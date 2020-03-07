@@ -35,7 +35,7 @@ def about():
 def profile():
     form = MyForm()
     if form.validate_on_submit():
-        return redirect('/home')
+        return redirect('/profile')
     return render_template('profile.html', form=form)
     
     

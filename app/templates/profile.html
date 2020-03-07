@@ -7,6 +7,21 @@
     {{ form.firstname.label }} 
 	{{ form.firstname(class='form-control', placeholder="Enter your username") }}
 	
+	{{ form.lastname.label }} 
+	{{ form.lastname(class='form-control') }}
+	
+	{{ form.gender.label }} 
+	{{ form.gender(class='form-control') }}
+	
+	{{ form.email.label }} 
+	{{ form.email(class='form-control') }}
+	
+	{{ form.location.label }} 
+	{{ form.location(class='form-control') }}
+	
+	{{ form.biography.label }} 
+	{{ form.biography(class='form-control') }}
+	
     <input type="submit" value="Add Profile">
 </form>
 {% endblock %}
