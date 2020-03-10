@@ -34,7 +34,7 @@ def fullprofile():
 @app.route('/allprofiles/')
 def Users(): 
     users=db.session.query(UserProfile).all()
-    return render_template('allprofiles.html')
+    return render_template('allprofiles.html', users=users)
 
 ###
 # The functions below should be applicable to all Flask apps.

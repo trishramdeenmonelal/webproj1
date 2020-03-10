@@ -4,5 +4,16 @@
 {% block main %} 
   <h2>All wow profiles</h2>
 
+{% if users %} 
+{% for user in users %}
+<h2>{{ user.firstname }} {{ user.lastname }}</h2>
+<p>{{ user.gender }}</p>
+<p>{{ user.location }}</p> 
+<p>{{ user.biography }}</p>
 
+  
+
+<button> View Profile</button> 
+{% endfor %}
+{% endif %}
 {% endblock %}
