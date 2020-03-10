@@ -2,7 +2,7 @@
 
 {% block main %}
 <h1>Add Profile</h1>
-<form method="POST" action="/">
+<form method="POST" action="/profile/" enctype = "multipart/form-data">
     {{ form.csrf_token }}
     <b>{{ form.firstname.label }} <b>
 	{{ form.firstname(class='form-control', placeholder="Enter your username") }}

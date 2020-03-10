@@ -5,9 +5,11 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from app import app
+from app import app,db
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import MyForm
+from app.models import UserProfile
+import psycopg2        
 
 ###
 # Routing for your application.
@@ -25,7 +27,10 @@ def about():
     return render_template('about.html', name="Mary Jane")
 
 
-
+@app.route('/allprofiles/')
+def Users(): 
+    users=db.session.query(UserProfile).all()
+    return render_template('allprofiles.html')
 
 ###
 # The functions below should be applicable to all Flask apps.
@@ -34,8 +39,22 @@ def about():
 @app.route('/profile/', methods=('GET', 'POST'))
 def profile():
     form = MyForm()
-    if form.validate_on_submit():
-        return redirect('/profile')
+    if request.method=='POST' and form.validate_on_submit():
+        firstname=request.form['firstname']
+        lastname=request.form['lastname']
+        gender=request.form['gender']
+        email=request.form['email']
+        location=request.form['location']
+        biography=request.form['biography']
+    
+        
+        userprofile = UserProfile(firstname,lastname,gender,email,location,biography)
+        db.session.add(userprofile)
+        db.session.commit()
+        
+        flash('Yup. you been added')
+        return redirect(url_for('Users'))
+        
     return render_template('profile.html', form=form)
     
     
