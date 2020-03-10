@@ -19,14 +19,14 @@ class UserProfile(db.Model):
     
     
     
-def __init__(self, firstname, lastname, gender, email, location, biography):
+    def __init__(self, firstname, lastname, gender, email, location, biography):
         
-    self.firstname = firstname
-    self.lastname = lastname
-    self.gender = gender
-    self.email = email
-    self.location = location
-    self.biography = biography
+        self.firstname = firstname
+        self.lastname = lastname
+        self.gender = gender
+        self.email = email
+        self.location = location
+        self.biography = biography
         
     def is_authenticated(self):
         return True

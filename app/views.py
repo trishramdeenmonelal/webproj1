@@ -26,6 +26,10 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
+@app.route('/fullprofile/')
+def fullprofile():
+    """Render the website's about page."""
+    return render_template('fullprofile.html')
 
 @app.route('/allprofiles/')
 def Users(): 
