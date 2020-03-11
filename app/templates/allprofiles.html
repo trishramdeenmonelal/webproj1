@@ -6,14 +6,16 @@
 
 {% if users %} 
 {% for user in users %}
-<h2>{{ user.firstname }} {{ user.lastname }}</h2>
-<p>{{ user.gender }}</p>
-<p>{{ user.location }}</p> 
-<p>{{ user.biography }}</p>
+<div class="border border-primary">  
 
-  
+                <h4>{{ user.firstname }} {{ user.lastname }}</h4>
+                <p>{{ user.gender }}</p>
+				<p>{{ user.location }}</p>
+                <button class="btn btn-primary" onclick="location.href='{{ url_for('fullprofile', userid=user.id) }}'" >View Profile</button> 
 
-<button> View Profile</button> 
+         
+</div>
+           
 {% endfor %}
 {% endif %}
 {% endblock %}

@@ -9,7 +9,9 @@ from app import app,db
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import MyForm
 from app.models import UserProfile
-import psycopg2        
+from werkzeug.utils import secure_filename
+import psycopg2    
+import os    
 
 ###
 # Routing for your application.
@@ -26,11 +28,11 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-@app.route('/fullprofile/')
-def fullprofile():
+@app.route('/allprofiles/<userid>')
+def fullprofile(userid):
     """Render the website's about page."""
-   
-    return render_template('fullprofile.html')
+    user=UserProfile.query.get(userid)
+    return render_template('fullprofile.html', user=user)
 
 @app.route('/allprofiles/')
 def Users(): 
@@ -51,9 +53,13 @@ def profile():
         email=request.form['email']
         location=request.form['location']
         biography=request.form['biography']
-    
+        profilepic = form.profilepic.data
         
-        userprofile = UserProfile(firstname,lastname,gender,email,location,biography)
+        
+        filename=secure_filename(profilepic.filename)
+        profilepic.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+        
+        userprofile = UserProfile(firstname,lastname,gender,email,location,biography, filename)
         db.session.add(userprofile)
         db.session.commit()
         
