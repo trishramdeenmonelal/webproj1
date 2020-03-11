@@ -7,7 +7,7 @@
 {% if users %} 
 {% for user in users %}
 <div class="border border-primary">  
-
+<img src= "{{url_for('static', filename= 'uploads/' + user.profilepic )}}">
                 <h4>{{ user.firstname }} {{ user.lastname }}</h4>
                 <p>{{ user.gender }}</p>
 				<p>{{ user.location }}</p>
